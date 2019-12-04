@@ -1,0 +1,120 @@
+.chapter-container a,
+.chapter-container a:visited,
+.chapter-container a:active {
+  color: inherit;
+  position: relative;
+  z-index: 6;
+}
+
+.plaintext-container a,
+.plaintext-container a:visited,
+.plaintext-container a:active {
+  color: inherit;
+  position: relative;
+  z-index: 6;
+}
+
+@media screen {
+  @media (max-width: 1025px) {
+    .swiper-text {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0 0px;
+      box-sizing: border-box;
+      color: white;
+      height: calc(100% - 30px);
+    }
+    .swiper-text p {
+      margin-bottom: 0;
+      font-weight: 300;
+      width: 100%;
+      font-size: 1.2em;
+    }
+
+    .plaintext-container {
+      padding: 20px;
+      margin-top: 20%;
+    }
+
+    .chapter-container.chapter-bottom p {
+      margin-bottom: 10px;
+      font-weight: 300;
+      width: calc(100% - 20px);
+      font-size: 1.2em;
+      background: rgba(36, 74, 79, 0.75);
+      margin-top: 0;
+      padding: 10px;
+    }
+
+    .chapter-container.chapter-bottom {
+      position: absolute;
+      bottom: 0;
+      /* margin: 10px; */
+      /* padding: 0px; */
+      width: 90%;
+      margin-left: auto;
+      display: block;
+      margin-right: auto;
+      left: 0;
+      right: 0;
+      /* padding: 9px; */
+    }
+
+    .chapter-container {
+    }
+    .swiper-text.chapter {
+      justify-content: flex-start !important;
+    }
+    .swiper-text.plainText {
+      justify-content: start !important;
+    }
+    .swiper-position-center .swiper-text {
+      justify-content: center;
+    }
+
+    .swiper-position-bottom .swiper-text {
+      justify-content: flex-end;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .chapter-container.chapter-bottom p {
+      font-weight: 300;
+    }
+
+    .swiper-text.chapter {
+      width: 49%;
+      color: white;
+      position: absolute;
+      left: 51%;
+      font-size: 1.3rem;
+      font-weight: 200;
+
+      padding: 30px;
+      padding-top: 0;
+    }
+
+    .mask-on.swiper-position-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .swiper-text.plaintext {
+      font-size: 1.3rem;
+      font-weight: 200;
+      width: 50%;
+      max-width: 800px;
+      color: white;
+      position: relative;
+    }
+  }
+}
+@media (max-width: 1025px) {
+  .swiper-slide.video-slide.mask-on .swiper-text,
+  [data-slide-type='cover'] .swiper-text {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}

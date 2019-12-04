@@ -1,0 +1,9 @@
+dist
+videotest
+node_modules
+.cache
+*.log
+.DS_Store
+build
+*.swp
+*.swo

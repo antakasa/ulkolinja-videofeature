@@ -1,0 +1,72 @@
+{
+  "name": "2019-11-ulkolinja-venaja",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "cross-var cross-env NODE_ENV=development BUILD_PATH=normal APP_NAME=$npm_package_name parcel index.html",
+    "gitrepo": "cross-var hub create -p Yleisradio/lusi-dataviz-$npm_package_name",
+    "deploy": "npm run build && npx dataviz-deploy generate --dir build && dataviz-deploy sync lusi $npm_package_name",
+    "deploy:test": "npm run build:test  && npx dataviz-deploy generate --dir build  && dataviz-deploy sync lusi-test $npm_package_name",
+    "deploy:fynd": "cross-var cross-env npm run build:fynd && npx dataviz-deploy generate --dir build && dataviz-deploy sync lusi $npm_package_name",
+    "build:fynd": "cross-var cross-env BUILD_PATH=fynd NODE_ENV=production APP_NAME=$npm_package_name parcel build --public-url https://lusi-dataviz.ylestatic.fi/$npm_package_name/ index.html --out-dir ./build && cross-var echo \"https://lusi-dataviz.ylestatic.fi/$npm_package_name\"",
+    "build": "cross-var cross-env NODE_ENV=production APP_NAME=$npm_package_name parcel build --public-url https://lusi-dataviz.ylestatic.fi/$npm_package_name/ index.html --out-dir ./build && cross-var echo \"https://lusi-dataviz.ylestatic.fi/$npm_package_name\"",
+    "build:test": "cross-var cross-env NODE_ENV=production APP_NAME=$npm_package_name parcel build index.html  --out-dir ./build && cross-var echo \"https://lusi-dataviz.test.ylestatic.fi/$npm_package_name\""
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.0",
+    "autoprefixer": "^7.2.1",
+    "bootstrap": "^4.3.1",
+    "framer-motion": "^1.6.7",
+    "jquery": "^3.4.1",
+    "lodash.compact": "^3.0.1",
+    "lodash.pickby": "^4.6.0",
+    "popper.js": "^1.15.0",
+    "postcss-modules": "^1.4.1",
+    "postcss-prefix-selector": "^1.7.1",
+    "react": "^16.12.0",
+    "react-circular-progressbar": "^2.0.2",
+    "react-div-100vh": "^0.3.4",
+    "react-dom": "^16.9.0",
+    "react-helmet": "^5.2.1",
+    "react-id-swiper": "^2.3.2",
+    "react-lazyload": "^2.6.2",
+    "react-markdown": "^4.2.2",
+    "react-share": "^3.0.1",
+    "react-swipeable": "^5.4.0",
+    "swiper": "^4.5.0"
+  },
+  "staticFiles": {
+    "staticPath": [
+      "src/public"
+    ],
+    "watcherGlob": "**"
+  },
+  "postcss": {
+    "modules": false,
+    "plugins": {
+      "autoprefixer": {
+        "browsers": [
+          ">1%",
+          "last 4 versions",
+          "Firefox ESR",
+          "not ie < 9"
+        ],
+        "flexbox": "no-2009"
+      }
+    }
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "parcel-plugin-static-files-copy": "^2.2.1",
+    "cross-env": "^5.1.1",
+    "cross-var": "^1.1.0",
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-clean-dist": "0.0.6"
+  }
+}

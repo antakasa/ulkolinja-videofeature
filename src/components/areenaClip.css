@@ -1,0 +1,7 @@
+.yo-areena-player {
+  margin: 1em 0;
+  min-height: 8em;
+  min-width: 20em;
+  position: relative;
+  z-index: 5;
+}

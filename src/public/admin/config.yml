@@ -1,0 +1,325 @@
+backend:
+  name: git-gateway
+  branch: master
+media_folder: src/public/uploads
+public_folder: /uploads
+collections:
+  -
+    label: 'Yksittäiset sivut'
+    name: pages
+    files:
+
+      -  
+        name: coverPage
+        label: 'Cover page'
+        file: src/data/slides/coverPage.json
+        format: json
+        fields:
+          -
+            label: Unique id
+            hint: "Jokin sisältöä kuvaava nimi, jolla sen erottaa muista" 
+            name: id
+            widget: string
+            required: true
+          -
+            label: 'Desktop background image'
+            name: desktopSrc
+            widget: image
+          -
+            label: 'Mobile background image'
+            name: src
+            widget: image
+          -
+            label: Header
+            name: header1
+            widget: string
+          -
+            label: ÄLÄ MUUTA
+            hint: "Älä muuta, pidä sisältönä aina \"cover\"" 
+            name: type
+            widget: string
+            default: text
+          -
+            label: Subheader
+            name: subheader
+            widget: string
+      -
+        name: finalPage
+        label: 'Final page'
+        file: src/data/slides/finalPage.json
+        format: json
+        fields:
+          -
+            label: Unique id
+            hint: "Jokin sisältöä kuvaava nimi, jolla sen erottaa muista" 
+            name: id
+            widget: string
+            required: true
+          -
+            label: ÄLÄ MUUTA
+            hint: "Älä muuta, pidä sisältönä aina \"finalPage\"" 
+            name: type
+            widget: string
+            default: text
+          -
+            label: 'Areena video id'
+            name: areenaVideo
+            widget: string
+      -
+        name: credits1
+        label: 'Credits 1/2'
+        file: src/data/slides/credits1.json
+        format: json
+        fields:
+          -
+            label: Unique id
+            hint: "Jokin sisältöä kuvaava nimi, jolla sen erottaa muista" 
+            name: id
+            widget: string
+            required: true
+          -
+            label: ÄLÄ MUUTA
+            hint: "Älä muuta, pidä sisältönä aina \"text\"" 
+            name: type
+            widget: string
+            default: "text"
+            required: true
+          -
+            label:  ÄLÄ MUUTA
+            hint: "Älä muuta, pidä aina on-asennossa"
+            name: credits
+            widget: boolean
+            default: true
+            required: true
+          -
+            label: Krediitit
+            hint: "Kirjoita krediitit. Krediittisivuja varattu 2."
+            name: text
+            widget: markdown
+      -
+        name: credits2
+        label: 'Credits 2/2'
+        file: src/data/slides/credits2.json
+        format: json
+        fields:
+          -
+            label: Unique id
+            hint: "Jokin sisältöä kuvaava nimi, jolla sen erottaa muista" 
+            name: id
+            widget: string
+            required: true
+          -
+            label: ÄLÄ MUUTA
+            hint: "Älä muuta, pidä sisältönä aina \"text\"" 
+            name: type
+            widget: string
+            default: text
+          -
+            label:  ÄLÄ MUUTA
+            hint: "Älä muuta, pidä aina on-asennossa"
+            name: credits
+            widget: boolean
+            default: true
+          -
+            label: Text
+            hint: "Kirjoita krediitit. Krediittisivuja varattu 2."
+            name: text
+            widget: markdown
+  -
+    label: 'Video background slides'
+    identifier_field: id
+    name: video-bg-slides
+    folder: src/data/slides
+    editor:
+      preview: false
+    create: true
+    format: json
+    filter:
+      field: type
+      value: background-video
+    fields:
+      -
+        label: 'An unique identifier'
+        name: id
+        widget: string
+      -
+        label: Type
+        name: type
+        widget: hidden
+        default: background-video
+      -
+        label: 'Background video'
+        name: src
+        widget: file
+      -
+        label: 'Bottom positioned text'
+        name: bottom
+        widget: boolean
+        default: false
+      -
+        label: Text
+        name: text
+        widget: markdown
+  -
+    label: 'Still background slides'
+    identifier_field: id
+    name: still-bg-slides
+    folder: src/data/slides
+    format: json
+    editor:
+      preview: false
+    create: true
+    filter:
+      field: type
+      value: still
+    fields:
+      -
+        label: 'An unique identifier'
+        name: id
+        widget: string
+      -
+        label: Type
+        name: type
+        widget: hidden
+        default: still
+      -
+        label: 'Bottom positioned text'
+        name: bottom
+        widget: boolean
+        default: true
+      -
+        label: 'Background image'
+        name: src
+        widget: image
+      -
+        label: Text
+        name: text
+        widget: markdown
+  -
+    label: 'Graph slides'
+    identifier_field: id
+    name: graph-slides
+    folder: src/data/slides
+    format: json
+    editor:
+      preview: false
+    create: true
+    filter:
+      field: type
+      value: graph
+    fields:
+      -
+        label: 'An unique identifier'
+        name: id
+        widget: string
+      -
+        label: Type
+        name: type
+        widget: hidden
+        default: graph
+      -
+        label: 'Image'
+        name: src
+        widget: image
+  -
+    label: 'Subtitled video slides'
+    name: sub-video-slides
+    folder: src/data/slides
+    identifier_field: id
+    format: json
+    editor:
+      preview: false
+    create: true
+    filter:
+      field: type
+      value: subtitled-video
+    fields:
+      -
+        label: Type
+        name: type
+        widget: hidden
+        default: subtitled-video
+      -
+        label: 'An unique identifier'
+        name: id
+        widget: string
+      -
+        label: Video
+        name: src
+        widget: file
+      -
+        label: 'Subtitle (*.vtt file)'
+        name: sub
+        widget: file
+        required: false
+      -
+        label: 'Tg (image)'
+        name: tg
+        widget: file
+        required: false
+  -
+    label: 'Plain text slides'
+    identifier_field: id
+    name: plain-text-slides
+    folder: src/data/slides
+    format: json
+    create: true
+    editor:
+      preview: false
+    filter:
+      field: plaintext
+      value: true
+    fields:
+      -
+        label: 'An unique identifier'
+        name: id
+        widget: string
+      -
+        label: Type
+        name: type
+        widget: hidden
+        default: text
+      -
+        label: Plaintext
+        name: plaintext
+        widget: hidden
+        default: true
+      -
+        label: Text
+        name: text
+        widget: markdown
+  -
+    label: 'All slides'
+    name: all-slides
+    folder: src/data/slides
+    identifier_field: id
+    format: json
+    create: false
+    fields:    
+      -
+        label: Text
+        name: text
+        widget: markdown
+  -
+    name: settings
+    label: Näkymä
+    files:
+      -
+        name: collectionOrder
+        format: json
+        label: Muuta järjestystä
+        file: src/data/displayOrder.json
+        fields:
+          -
+            label: Sisällöt
+            name: data
+            widget: list
+            fields:
+              -
+                label: 'Sisällön id'
+                name: collectionName
+                widget: relation
+                collection: all-slides
+                searchFields:
+                  - id
+                valueField: id

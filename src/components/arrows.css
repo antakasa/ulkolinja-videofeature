@@ -1,0 +1,51 @@
+.venezuela-arrow.right.mobile {
+  position: relative;
+  height: 60px;
+  width: 20px;
+  left: calc(100% - 40px);
+  top: -80px;
+}
+
+.venezuela-arrow.desktop {
+  position: absolute;
+  height: 60px;
+  width: 20px;
+}
+
+.venezuela-arrow.right.desktop {
+  left: calc(100% - 40px);
+  top: calc(50% - 30px);
+}
+
+.venezuela-arrow.right.desktop.cover {
+  height: 70px;
+  width: 70px;
+  left: calc(100% - 100px);
+  top: calc(50% - 35px);
+}
+
+.venezuela-arrow.left.desktop {
+  left: calc(0% + 10px);
+  top: calc(50% - 30px);
+  transform: rotate(180deg);
+}
+
+.bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translatex(0);
+  }
+  40% {
+    transform: translateX(-10px);
+  }
+  60% {
+    transform: translatex(-5px);
+  }
+}

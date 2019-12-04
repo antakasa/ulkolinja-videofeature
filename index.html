@@ -1,0 +1,41 @@
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="text/javascript"
+      src="https://player-v2.yle.fi/embed.js"
+    ></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Parcel React Example</title>
+    <!--
+    <script
+      type="text/javascript"
+      src="https://player-v2.yle.fi/embed.js"
+    ></script>-->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+  <body>
+    <link
+      href="https://fonts.googleapis.com/css?family=Oswald:300,400&display=swap"
+      itemprop="stylesheet"
+      rel="stylesheet"
+    />
+
+    <div id="dataviz-app">
+      <div id="root"></div>
+    </div>
+    <script src="./index.js"></script>
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', user => {
+          if (!user) {
+            window.netlifyIdentity.on('login', () => {
+              document.location.href = '/admin/';
+            });
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

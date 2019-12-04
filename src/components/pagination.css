@@ -1,0 +1,72 @@
+.pagination {
+  z-index: 34;
+  display: flex;
+  color: white;
+  font-size: 1em;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: 5px;
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  margin-right: 5px;
+  border: 1px solid white;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.pagination svg {
+}
+
+.dot.active {
+  background: white;
+}
+
+.pagination.split-screen-pagination {
+  margin-bottom: 10px;
+  display: none;
+  position: relative;
+}
+
+@media only screen and (min-width: 1150px) {
+  .pagination.split-screen-pagination {
+    display: block;
+  }
+
+  .pagination.full-screen-pagination {
+    display: none;
+  }
+
+  .dot {
+    border: 1px solid black;
+  }
+  .dot.active {
+    background: black;
+  }
+}
+
+.progress-bar {
+  position: relative;
+  height: 3px;
+  width: 100%;
+  border-radius: 0px;
+  background: #a5c1c6;
+}
+
+.filler {
+  background: #244a4f;
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.2s ease-in;
+}
+
+@media only screen and (min-width: 1150px) {
+  .progress-bar {
+    height: 6px;
+  }
+}
