@@ -2,5 +2,6 @@
   "type": "subtitled-video",
   "id": "2. ",
   "src": "/uploads/2.mp4",
+  "sub": "/uploads/2.vtt",
   "tg": "/uploads/tg_venaja_anna.png"
 }
