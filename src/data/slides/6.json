@@ -2,6 +2,6 @@
   "id": "6.",
   "type": "background-video",
   "src": "/uploads/24.mp4",
-  "bottom": false,
+  "bottom": true,
   "text": "Puhelut eivät auta. Yllättäen kaikkien paikallistenkin kulkuluvat on mitätöity.\n\nAamulla uusi yritys junalla. Monet matkustajista on matkalla Šiesiin kaatopaikkatyömaalle, jonne on kohonnut mielenosoittajien leiri."
 }
