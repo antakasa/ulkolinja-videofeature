@@ -4,15 +4,6 @@
       "collectionName": "Etusivu"
     },
     {
-      "collectionName": "Loppusivu missä Areena player"
-    },
-    {
-      "collectionName": "Tekijätiedot 2"
-    },
-    {
-      "collectionName": "Tekijätiedot 1"
-    },
-    {
       "collectionName": "1. "
     },
     {
@@ -89,6 +80,15 @@
     },
     {
       "collectionName": "26."
+    },
+    {
+      "collectionName": "Loppusivu missä Areena player"
+    },
+    {
+      "collectionName": "Tekijätiedot 2"
+    },
+    {
+      "collectionName": "Tekijätiedot 1"
     }
   ]
 }
