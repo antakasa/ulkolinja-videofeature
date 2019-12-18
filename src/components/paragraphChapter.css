@@ -74,7 +74,7 @@
     }
 
     .swiper-position-bottom .swiper-text {
-      justify-content: flex-end;
+      justify-content: flex-start;
     }
   }
 
