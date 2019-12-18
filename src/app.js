@@ -179,7 +179,10 @@ const VideoSwiper = ({index, updateCurrentIndex, storeNextSlideFunc}) => {
     },
     preloadImages: false,
     effect: 'none',
-
+    keyboard: {
+      enabled: true,
+      onlyInViewport: false,
+    },
     speed: 0,
     noSwiping: true,
     on: {

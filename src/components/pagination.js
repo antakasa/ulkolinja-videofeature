@@ -26,10 +26,14 @@ const Pagination = ({index, splitScreen}) => {
     }
   };
   if (index === 0) return null;
-  if (data[index].type === 'finalPage') return null;
   return (
     <div className={cssClasses()}>
-      <div style={{width: '90%', height: '12px'}}>
+      <div
+        style={{
+          width: '90%',
+          height: '12px',
+          visibility: data[index].type === 'finalPage' ? 'hidden' : '',
+        }}>
         <ProgressBar percentage={(index / (data.length - 1)) * 100} />
       </div>
     </div>

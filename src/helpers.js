@@ -19,11 +19,8 @@ export const createSubtitleTrack = (video, id, subPath) => {
   //"public/uploads/1.vtt":
   //
 
-  console.log(subPath);
-  console.log(Object.values(subs));
   const matchingKey = Object.keys(subs).filter(e => e.indexOf(subPath) > 0);
 
-  console.log(matchingKey);
   let parsed = subtitleParser(subs[matchingKey[0]]);
   const track = video.current.addTextTrack('subtitles', 'Finnish', 'Fi');
   track.mode = 'showing';

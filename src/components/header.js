@@ -15,25 +15,38 @@ const Header = ({index, splitScreen, nextSlideFunc, mobile}) => {
     }
   };
 
+  let notVisible = () => {
+    const slide = data[index];
+    const testBooleans = [slide.type === 'finalPage', slide.credits];
+    if (testBooleans.indexOf(true) >= 0) {
+      return true;
+    } else return false;
+  };
+
+  ['finalPage', 'credits1', 'credits2']; // logo not visible on these slides
+
   return (
     <div className={'venezuela-header'}>
       <Pagination index={index} />
       {index > 0 && (
         <div className="logo-and-instructions">
-          {data[index].type !== 'finalPage' && (
+          {
             <>
               <img
                 src={logo}
                 className="venezuela-ul-logo"
                 alt="Ulkolinjan logo"
+                style={{
+                  visibility: notVisible() ? 'hidden' : '',
+                }}
               />
-              {mobile && (
+              {mobile && index !== data.length - 1 && (
                 <div onClick={() => nextSlideFunc()}>
                   <img src={tap} />
                 </div>
               )}
             </>
-          )}
+          }
         </div>
       )}
     </div>
