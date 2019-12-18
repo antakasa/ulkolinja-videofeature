@@ -62,9 +62,6 @@ const dataWithBuildPath = Object.values(
   ),
 );
 
-console.log(process.env.BUILD_PATH);
-console.log(process.env.BUILD_PATH === 'fynd');
-
 let data =
   process.env.BUILD_PATH === 'fynd' ? dataWithBuildPath : dataNotReplaced;
 export {data};

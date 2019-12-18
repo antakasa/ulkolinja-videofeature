@@ -25,7 +25,7 @@ function fromDir(startPath, filter) {
   return subsPaths;
 }
 
-const subs = fromDir('./src/public/uploads', '.vtt');
+const subs = fromDir('./public/uploads', '.vtt');
 
 let subsJSON = {};
 
@@ -46,10 +46,7 @@ func(subs)
       let newValue = data[i];
       obj = {...obj, ...newValue};
     }
-    let jsonData = JSON.stringify(obj, null, 2);
-    fs.writeFile('subs.json', jsonData, err => {
-      if (err) throw err;
-      console.log('Data written to file');
-    });
-  })
+    console.log(obj);
+      let jsonData= JSON.stringify(student, null, 2);
+      })
   .catch(console.log);

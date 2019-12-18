@@ -13,28 +13,29 @@ import variTausta from './images/varitausta.jpg';
 import GraphImage from './components/graphImage.js';
 import LoadingOverlay from './components/loadingOverlay';
 import Div100vh from 'react-div-100vh';
-import {useWindowSize, secondsToTime} from './helpers';
+import {useWindowSize, secondsToTime, createSubtitleTrack} from './helpers';
 import Arrows from './components/arrows';
 import {AnalyticsMethods as Analytics} from './helpers';
 import BrandLogo from './images/ulkolinja_logo.png';
 import {ProgressBar} from './components/pagination';
 import {useSwipeable, Swipeable} from 'react-swipeable';
 import subtitleSvg from './images/conversation.svg';
-
-const BackgroundVideo = ({src, sub, tg, desktop}) => {
+const BackgroundVideo = ({src, sub, tg, desktop, id}) => {
   const trackEl = useRef(null);
   const videoEl = useRef(null);
   const [progress, updateProgress] = useState(0);
   const [time, updateTime] = useState({h: 0, m: 0, s: 0});
   const [currentSub, displaySub] = useState('');
   useEffect(() => {
-    if (!trackEl.current) return;
-    trackEl.current.oncuechange = function(event) {
-      const activeCues = event.target.track.activeCues;
+    const track = createSubtitleTrack(videoEl, id, sub);
+    if (!track) return;
+    track.oncuechange = function(event) {
+      const activeCues = track.activeCues;
       if (activeCues.length > 0) displaySub(activeCues[0].text);
       if (activeCues.length === 0) displaySub('');
     };
   }, []);
+
   return (
     <div className="swiper-video">
       {sub && (
@@ -88,7 +89,7 @@ const BackgroundVideo = ({src, sub, tg, desktop}) => {
         loop
         data-src={src}>
         <source data-src={src} type="video/mp4" />
-        {sub && (
+        {sub && false && (
           <track
             label="Finnish"
             kind="subtitles"
@@ -103,14 +104,6 @@ const BackgroundVideo = ({src, sub, tg, desktop}) => {
     </div>
   );
 };
-
-//<track
-//label="Finnish"
-//kind="subtitles"
-//srcLang="fi"
-//src={caption}
-//default
-///>
 const BackgroundStill = ({src, coverLoadedCallback, cover, desktopSrc}) => {
   return (
     <div className={`swiper-video ${desktopSrc ? 'fullscreen' : ''} `}>
@@ -187,7 +180,7 @@ const VideoSwiper = ({index, updateCurrentIndex, storeNextSlideFunc}) => {
     preloadImages: false,
     effect: 'none',
 
-    speed: 50,
+    speed: 0,
     noSwiping: true,
     on: {
       slideChangeTransitionStart: () => {
@@ -252,7 +245,15 @@ const VideoSwiper = ({index, updateCurrentIndex, storeNextSlideFunc}) => {
     }
   };
 
-  const determineBackgroundType = (type, src, sub, tg, desktop, desktopSrc) => {
+  const determineBackgroundType = (
+    type,
+    src,
+    sub,
+    tg,
+    desktop,
+    desktopSrc,
+    id,
+  ) => {
     if (type === 'still') {
       return <BackgroundStill coverLoadedCallback={false} src={src} />;
     } else if (type === 'cover') {
@@ -267,7 +268,15 @@ const VideoSwiper = ({index, updateCurrentIndex, storeNextSlideFunc}) => {
     } else if (type === 'background-video') {
       return <BackgroundVideo src={src} />;
     } else if (type === 'subtitled-video') {
-      return <BackgroundVideo src={src} sub={sub} tg={tg} desktop={desktop} />;
+      return (
+        <BackgroundVideo
+          src={src}
+          id={id}
+          sub={sub}
+          tg={tg}
+          desktop={desktop}
+        />
+      );
     } else {
       return null;
     }
@@ -284,6 +293,7 @@ const VideoSwiper = ({index, updateCurrentIndex, storeNextSlideFunc}) => {
       areenaVideo,
       header1,
       subheader,
+      id,
     } = e;
     if (type === 'graph') {
       return <GraphImage src={src} />;
@@ -318,6 +328,8 @@ const VideoSwiper = ({index, updateCurrentIndex, storeNextSlideFunc}) => {
     loadNextVideo();
   }, []);
 
+  console.log(data[0].id);
+
   return (
     <>
       <LoadingOverlay isVisible={coverImageLoaded && initialized} />
@@ -339,6 +351,7 @@ const VideoSwiper = ({index, updateCurrentIndex, storeNextSlideFunc}) => {
               e.tg,
               width >= 1025,
               e.desktopSrc,
+              e.id,
             )}
             {determineContentType(index, e, width >= 1025)}
             <Arrows type={e.type} desktop={width >= 1025} index={i} />

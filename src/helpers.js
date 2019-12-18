@@ -3,6 +3,35 @@ import CMSData from './data/**/*.json';
 import pickBy from 'lodash.pickby';
 import compact from 'lodash.compact';
 
+import {WebVTTParser} from 'webvtt-parser';
+import subs from './subs.json';
+export const createSubtitleTrack = (video, id, subPath) => {
+  if (!video) return;
+  const subtitleParser = someVTT => {
+    const parser = new WebVTTParser();
+    const tree = parser.parse(someVTT, 'metadata');
+    return tree;
+  };
+
+  if (!id) return;
+
+  //"sub": "/uploads/20.vtt",
+  //"public/uploads/1.vtt":
+  //
+
+  console.log(subPath);
+  console.log(Object.values(subs));
+  const matchingKey = Object.keys(subs).filter(e => e.indexOf(subPath) > 0);
+
+  console.log(matchingKey);
+  let parsed = subtitleParser(subs[matchingKey[0]]);
+  const track = video.current.addTextTrack('subtitles', 'Finnish', 'Fi');
+  track.mode = 'showing';
+  parsed.cues.map(e =>
+    track.addCue(new VTTCue(e.startTime, e.endTime, e.text)),
+  );
+  return track;
+};
 export const secondsToTime = secs => {
   secs = Math.round(secs);
   var hours = Math.floor(secs / (60 * 60));
