@@ -21,7 +21,6 @@
     "jquery": "^3.4.1",
     "lodash.compact": "^3.0.1",
     "lodash.pickby": "^4.6.0",
-    "parcel": "^2.0.0-alpha.3.2",
     "popper.js": "^1.15.0",
     "postcss-modules": "^1.4.1",
     "postcss-prefix-selector": "^1.7.1",
@@ -39,21 +38,14 @@
     "webvtt-parser": "git+https://github.com/annevk/webvtt.git"
   },
   "staticFiles": {
-    "staticPath": [
-      "src/public"
-    ],
+    "staticPath": ["src/public"],
     "watcherGlob": "**"
   },
   "postcss": {
     "modules": false,
     "plugins": {
       "autoprefixer": {
-        "browsers": [
-          ">1%",
-          "last 4 versions",
-          "Firefox ESR",
-          "not ie < 9"
-        ],
+        "browsers": [">1%", "last 4 versions", "Firefox ESR", "not ie < 9"],
         "flexbox": "no-2009"
       }
     }
@@ -66,10 +58,10 @@
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
+    "parcel-plugin-static-files-copy": "^2.2.1",
     "cross-env": "^5.1.1",
     "cross-var": "^1.1.0",
-    "parcel-bundler": "^1.12.4",
-    "parcel-plugin-clean-dist": "0.0.6",
-    "parcel-plugin-static-files-copy": "^2.2.1"
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-clean-dist": "0.0.6"
   }
 }
