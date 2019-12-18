@@ -1,4 +1,5 @@
 import './index.css';
+import 'swiper/dist/css/swiper.css';
 import React, {useEffect, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
 import Swiper from 'react-id-swiper';

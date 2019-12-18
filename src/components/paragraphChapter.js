@@ -23,11 +23,6 @@ const ParagraphChapter = ({
     <div className={`mask-on ${position()}`}>
       <div className={`swiper-text ${plainText ? 'plaintext' : 'chapter'}`}>
         <Pagination splitScreen index={index} />
-        {width >= 1025 && (
-          <div className="venezuela-logo-container">
-            <img src={header} className="venezuela-ul-logo desktop" />
-          </div>
-        )}
         <div
           className={
             plainText

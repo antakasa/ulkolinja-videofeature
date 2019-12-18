@@ -26,13 +26,22 @@ const Pagination = ({index, splitScreen}) => {
     }
   };
   if (index === 0) return null;
+
+  let notVisible = () => {
+    const slide = data[index];
+    const testBooleans = [slide.type === 'finalPage', slide.credits];
+    if (testBooleans.indexOf(true) >= 0) {
+      return true;
+    } else return false;
+  };
+
   return (
     <div className={cssClasses()}>
       <div
         style={{
           width: '90%',
           height: '12px',
-          visibility: data[index].type === 'finalPage' ? 'hidden' : '',
+          visibility: notVisible() ? 'hidden' : '',
         }}>
         <ProgressBar percentage={(index / (data.length - 1)) * 100} />
       </div>
