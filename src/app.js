@@ -390,9 +390,14 @@ const App = () => {
   document.body.style.margin = '0';
   const [currentIndex, updateCurrentIndex] = useState(0);
   const [nextSlideFunc, storeNextSlideFunc] = useState(() => () => null);
+  const [width, height] = useWindowSize();
   return (
     <div className={'app'}>
-      <Header index={currentIndex} nextSlideFunc={nextSlideFunc} />
+      <Header
+        index={currentIndex}
+        nextSlideFunc={nextSlideFunc}
+        mobile={width < 900}
+      />
       <Div100vhMinusYleHeader>
         <VideoSwiper
           storeNextSlideFunc={storeNextSlideFunc}

@@ -4,7 +4,7 @@ import Pagination from './pagination';
 import './header.css';
 import {data} from '../data';
 import tap from '../images/tap_toka.svg';
-const Header = ({index, splitScreen, nextSlideFunc}) => {
+const Header = ({index, splitScreen, nextSlideFunc, mobile}) => {
   const cssClasses = () => {
     if (!splitScreen) {
       return 'pagination full-screen-pagination';
@@ -20,20 +20,20 @@ const Header = ({index, splitScreen, nextSlideFunc}) => {
       <Pagination index={index} />
       {index > 0 && (
         <div className="logo-and-instructions">
-          {data[index].type !== 'graph' &&
-            data[index].type !== 'finalPage' && (
-              <>
-                <img
-                  src={logo}
-                  className="venezuela-ul-logo"
-                  alt="Ulkolinjan logo"
-                />
-
+          {data[index].type !== 'finalPage' && (
+            <>
+              <img
+                src={logo}
+                className="venezuela-ul-logo"
+                alt="Ulkolinjan logo"
+              />
+              {mobile && (
                 <div onClick={() => nextSlideFunc()}>
                   <img src={tap} />
                 </div>
-              </>
-            )}
+              )}
+            </>
+          )}
         </div>
       )}
     </div>

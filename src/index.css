@@ -26,6 +26,7 @@ video::-webkit-media-text-track-display-backdrop {
 }
 
 .time-left {
+  font-weight: 300;
   color: white;
   margin: 10px;
   width: 10%;
