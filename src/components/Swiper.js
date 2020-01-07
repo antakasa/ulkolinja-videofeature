@@ -1,18 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {useWindowSize, playAndPause} from '../helpers/index.js';
-import {Arrows, LoadingOverlay} from './index.js';
-import Swiper from 'react-id-swiper';
-import {
-  determineBackgroundType,
-  AnalyticsMethods as Analytics,
-  determineContentType,
-  lazyHelpers,
-} from '../helpers/index.js';
-const VideoSwiper = ({data, index, updateCurrentIndex, storeNextSlideFunc}) => {
+import {playAndPause} from '../helpers/index.js';
+import {SlideContainer, LoadingOverlay} from './index.js';
+import {AnalyticsMethods as Analytics, lazyHelpers} from '../helpers/index.js';
+const SetupSwiper = ({data, index, updateCurrentIndex, storeNextSlideFunc}) => {
   const [swiper, updateSwiper] = useState(null);
   const [initialized, initDone] = useState(false);
   const [coverImageLoaded, triggerCoverLoaded] = useState(false);
-  const [width, height] = useWindowSize();
 
   const params = {
     getSwiper: updateSwiper,
@@ -36,28 +29,31 @@ const VideoSwiper = ({data, index, updateCurrentIndex, storeNextSlideFunc}) => {
     },
   };
 
-  useEffect(() => {
-    if (swiper !== null) {
-      //window.swiper = swiper;
-      swiper.on('init', () => {
-        lazyHelpers.initialize();
-        lazyHelpers.loadNextPic();
-        lazyHelpers.loadNextPic();
-        lazyHelpers.loadNextPic();
-        lazyHelpers.loadNextVideo(); // eka video
-        initDone(true);
-        Analytics.registerEvent(`cover`);
-        storeNextSlideFunc(() => () => goNext());
-      });
-      swiper.init();
-      swiper.on('slideChange', () => {
-        lazyHelpers.loadNextVideo(); // eka video
-        lazyHelpers.loadNextPic();
-        updateCurrentIndex(swiper.realIndex);
-        Analytics.registerEvent(`slide${swiper.realIndex}`);
-      });
-    }
-  }, [swiper]);
+  useEffect(
+    () => {
+      if (swiper !== null) {
+        //window.swiper = swiper;
+        swiper.on('init', () => {
+          lazyHelpers.initialize();
+          lazyHelpers.loadNextPic();
+          lazyHelpers.loadNextPic();
+          lazyHelpers.loadNextPic();
+          lazyHelpers.loadNextVideo(); // eka video
+          initDone(true);
+          Analytics.registerEvent(`cover`);
+          storeNextSlideFunc(() => () => goNext());
+        });
+        swiper.init();
+        swiper.on('slideChange', () => {
+          lazyHelpers.loadNextVideo(); // eka video
+          lazyHelpers.loadNextPic();
+          updateCurrentIndex(swiper.realIndex);
+          Analytics.registerEvent(`slide${swiper.realIndex}`);
+        });
+      }
+    },
+    [swiper],
+  );
 
   const goNext = () => {
     if (swiper !== null) {
@@ -74,25 +70,18 @@ const VideoSwiper = ({data, index, updateCurrentIndex, storeNextSlideFunc}) => {
   return (
     <>
       <LoadingOverlay isVisible={coverImageLoaded && initialized} />
-      <Swiper {...params}>
-        {data.map((e, i) => (
-          <div key={i}>
-            {initialized && (
-              <>
-                {index !== 0 && <div onClick={goPrev} id="prev-catch" />}
-                {index !== data.length - 1 && (
-                  <div onClick={goNext} id="next-catch" />
-                )}
-              </>
-            )}
-            {determineBackgroundType(e, width >= 1025, triggerCoverLoaded)}
-            {determineContentType(index, e, width >= 1025, swiper)}
-            <Arrows type={e.type} desktop={width >= 1025} index={i} />
-          </div>
-        ))}
-      </Swiper>
+      <SlideContainer
+        data={data}
+        params={params}
+        goNext={goNext}
+        index={index}
+        goPrev={goPrev}
+        initialized={initialized}
+        triggerCoverLoaded={triggerCoverLoaded}
+        swiper={swiper}
+      />
     </>
   );
 };
 
-export default VideoSwiper;
+export default SetupSwiper;
