@@ -5,7 +5,7 @@
   "scripts": {
     "start": "cross-var cross-env NODE_ENV=development BUILD_PATH=normal APP_NAME=$npm_package_name parcel index.html",
     "gitrepo": "cross-var hub create -p Yleisradio/lusi-dataviz-$npm_package_name",
-    "prestart": "node src/loadSubs.js",
+    "prestart": "node loadSubs.js",
     "deploy": "npm run build && npx dataviz-deploy generate --dir build && dataviz-deploy sync lusi $npm_package_name",
     "deploy:test": "npm run build:test  && npx dataviz-deploy generate --dir build  && dataviz-deploy sync lusi-test $npm_package_name",
     "deploy:fynd": "cross-var cross-env npm run build:fynd && npx dataviz-deploy generate --dir build && dataviz-deploy sync lusi $npm_package_name",
@@ -33,19 +33,25 @@
     "react-lazyload": "^2.6.2",
     "react-markdown": "^4.2.2",
     "react-share": "^3.0.1",
-    "react-swipeable": "^5.4.0",
     "swiper": "^4.5.0",
     "webvtt-parser": "git+https://github.com/annevk/webvtt.git"
   },
   "staticFiles": {
-    "staticPath": ["src/public"],
+    "staticPath": [
+      "src/public"
+    ],
     "watcherGlob": "**"
   },
   "postcss": {
     "modules": false,
     "plugins": {
       "autoprefixer": {
-        "browsers": [">1%", "last 4 versions", "Firefox ESR", "not ie < 9"],
+        "browsers": [
+          ">1%",
+          "last 4 versions",
+          "Firefox ESR",
+          "not ie < 9"
+        ],
         "flexbox": "no-2009"
       }
     }
