@@ -4,7 +4,6 @@ import CMSData from '../data/**/*.json';
 const processData = () => {
   const data = [];
   const {slides, displayOrder} = CMSData;
-  console.log(slides);
   displayOrder.data.map(e => {
     const id = e.collectionName;
     const pickedFromSlides = pickBy(
@@ -13,6 +12,7 @@ const processData = () => {
     );
     console.log(pickedFromSlides);
     const objectData = pickedFromSlides[Object.keys(pickedFromSlides)[0]];
+    console.log(objectData);
     data.push(objectData);
   });
   return compact(data);

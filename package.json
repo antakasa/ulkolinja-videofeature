@@ -3,7 +3,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "cross-var cross-env NODE_ENV=development BUILD_PATH=normal APP_NAME=$npm_package_name parcel index.html",
+    "start": "cross-var cross-env NODE_ENV=development BUILD_PATH=normal APP_NAME=$npm_package_name parcel index.html --no-hmr",
     "gitrepo": "cross-var hub create -p Yleisradio/lusi-dataviz-$npm_package_name",
     "prestart": "node loadSubs.js",
     "deploy": "npm run build && npx dataviz-deploy generate --dir build && dataviz-deploy sync lusi $npm_package_name",
@@ -40,21 +40,14 @@
     "webvtt-parser": "git+https://github.com/annevk/webvtt.git"
   },
   "staticFiles": {
-    "staticPath": [
-      "src/public"
-    ],
+    "staticPath": ["src/public"],
     "watcherGlob": "**"
   },
   "postcss": {
     "modules": false,
     "plugins": {
       "autoprefixer": {
-        "browsers": [
-          ">1%",
-          "last 4 versions",
-          "Firefox ESR",
-          "not ie < 9"
-        ],
+        "browsers": [">1%", "last 4 versions", "Firefox ESR", "not ie < 9"],
         "flexbox": "no-2009"
       }
     }
@@ -67,6 +60,7 @@
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
+    "@tinacms/api-git": "^0.5.0",
     "cors": "^2.8.5",
     "cross-env": "^5.1.1",
     "cross-var": "^1.1.0",

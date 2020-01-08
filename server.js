@@ -6,7 +6,7 @@ const server = express();
 const port = parseInt(process.env.PORT, 10) || 3001;
 
 server.use(cors());
-server.use('/___tina', gitApi.router());
+server.use('/___tina', gitApi.router({pushOnCommit: false}));
 
 server.listen(port, err => {
   if (err) throw err;

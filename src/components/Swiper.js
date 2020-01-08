@@ -65,6 +65,8 @@ const SetupSwiper = ({data, index, updateCurrentIndex, storeNextSlideFunc}) => {
     }
   };
 
+  console.log(data);
+
   return (
     <>
       <LoadingOverlay isVisible={coverImageLoaded && initialized} />
