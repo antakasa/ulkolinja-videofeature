@@ -13,6 +13,6 @@ export { default as Pagination } from './Pagination.js';
 export { default as ParagraphChapter } from './ParagraphChapter.js';
 export { default as ParagraphCover } from './ParagraphCover.js';
 export { default as ShareButtons } from './ShareButtons.js';
-export { default as SlideContainer } from './SlideContainer.js';
+export { default as Slide } from './Slide.js';
 export { default as Swiper } from './Swiper.js';
 
