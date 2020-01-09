@@ -17,6 +17,22 @@ const ParagraphCover = ({index, id, desktop, header, subHeader}) => {
   }, []);
 
   console.log(originalData);
+  const writeToDisk = data =>
+    cms.api.git
+      .writeToDisk({
+        fileRelativePath: filepath,
+        content: JSON.stringify({
+          ...originalData,
+          ...data,
+        }),
+      })
+      .then(() => {
+        return cms.api.git.commit({
+          files: [filepath],
+          message: `Commit from Tina: Update ${filepath}`,
+        });
+      });
+
   const [cover] = useLocalForm({
     id: filepath,
     label: 'Muokkaa cover',
@@ -30,22 +46,7 @@ const ParagraphCover = ({index, id, desktop, header, subHeader}) => {
     ],
 
     onSubmit(data) {
-      console.log(originalData);
-      return cms.api.git
-        .writeToDisk({
-          fileRelativePath: filepath,
-          content: JSON.stringify({
-            ...originalData,
-            header1: data.header,
-            subheader: data.subheader,
-          }),
-        })
-        .then(() => {
-          return cms.api.git.commit({
-            files: [filepath],
-            message: `Commit from Tina: Update ${filepath}`,
-          });
-        });
+      writeToDisk(data);
     },
   });
 
