@@ -7,18 +7,16 @@ import {useCMS, useLocalForm, useWatchFormValues} from 'tinacms';
 const ParagraphCover = ({index, id, desktop, header, subHeader}) => {
   const cms = useCMS();
   const filepath = `src/data/slides/coverPage.json`;
-
   const [originalData, setOriginalData] = useState({});
 
-  console.log(filepath);
   useEffect(() => {
     cms.api.git.show(filepath).then(e => {
-      console.log(e);
       const data = JSON.parse(e.content);
-      if (e && e.content) setOriginalData(data);
+      if (data) setOriginalData(data);
     });
   }, []);
 
+  console.log(originalData);
   const [cover] = useLocalForm({
     id: filepath,
     label: 'Muokkaa cover',
@@ -32,6 +30,7 @@ const ParagraphCover = ({index, id, desktop, header, subHeader}) => {
     ],
 
     onSubmit(data) {
+      console.log(originalData);
       return cms.api.git
         .writeToDisk({
           fileRelativePath: filepath,
