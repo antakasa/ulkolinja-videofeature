@@ -7,26 +7,24 @@ import {useCMS, useLocalForm, useWatchFormValues} from 'tinacms';
 const ParagraphCover = ({index, id, desktop, header, subHeader}) => {
   const cms = useCMS();
   const filepath = `src/data/slides/coverPage.json`;
-  const [originalData, setOriginalData] = useState({});
 
-  useEffect(() => {
+  const getContents = () =>
     cms.api.git.show(filepath).then(e => {
       const data = JSON.parse(e.content);
-      if (data) setOriginalData(data);
+      return data;
     });
-  }, []);
 
-  console.log(originalData);
-  const writeToDisk = data =>
+  const writeToDisk = async data =>
     cms.api.git
       .writeToDisk({
         fileRelativePath: filepath,
         content: JSON.stringify({
-          ...originalData,
+          ...(await getContents()),
           ...data,
         }),
       })
       .then(() => {
+        return null;
         return cms.api.git.commit({
           files: [filepath],
           message: `Commit from Tina: Update ${filepath}`,
