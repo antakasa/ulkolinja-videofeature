@@ -1,1 +1,9 @@
-{"subheader":"Venäjän jätekatastrofi kolmess minuutissa"}
+{
+  "id": "Etusivu",
+  "desktopSrc": "/uploads/venaja_aloitus_desktop_taustakuva.jpg",
+  "src": "/uploads/venaja_mobile_tausta.jpg",
+  "header1":
+    "Miksi 10-vuotias Tanja Lozova näytti kurkunleikkauseleen Moskovan alueen kuvernöörille? ",
+  "type": "cover",
+  "subheader": "Venäjän jätekatastrofi kolmessa minuutissa"
+}
