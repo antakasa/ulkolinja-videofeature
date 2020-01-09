@@ -1,9 +1,55 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './paragraphCover.css';
 import Pagination from './pagination';
 import BrandLogo from '../images/ulkolinja_logo.png';
 import AreenaClip from './areenaClip';
-const ParagraphCover = ({index, desktop, header, subHeader}) => {
+import {useCMS, useLocalForm, useWatchFormValues} from 'tinacms';
+const ParagraphCover = ({index, id, desktop, header, subHeader}) => {
+  const cms = useCMS();
+  const filepath = `src/data/slides/coverPage.json`;
+
+  const [originalData, setOriginalData] = useState({});
+
+  console.log(filepath);
+  useEffect(() => {
+    cms.api.git.show(filepath).then(e => {
+      console.log(e);
+      const data = JSON.parse(e.content);
+      if (e && e.content) setOriginalData(data);
+    });
+  }, []);
+
+  const [cover] = useLocalForm({
+    id: filepath,
+    label: 'Muokkaa cover',
+    initialValues: {
+      header1: header,
+      subheader: subHeader,
+    },
+    fields: [
+      {name: 'header1', label: 'header', component: 'text'},
+      {name: 'subheader', label: 'sub header', component: 'text'},
+    ],
+
+    onSubmit(data) {
+      return cms.api.git
+        .writeToDisk({
+          fileRelativePath: filepath,
+          content: JSON.stringify({
+            ...originalData,
+            header1: data.header,
+            subheader: data.subheader,
+          }),
+        })
+        .then(() => {
+          return cms.api.git.commit({
+            files: [filepath],
+            message: `Commit from Tina: Update ${filepath}`,
+          });
+        });
+    },
+  });
+
   return (
     <>
       <div className={`cover ${desktop ? 'fullscreen' : ''}`}>
@@ -13,8 +59,8 @@ const ParagraphCover = ({index, desktop, header, subHeader}) => {
           src={BrandLogo}
         />
         <div className="title-box">
-          <h2 className="cover-title">{header}</h2>
-          <h3 className="cover-subtitle">{subHeader}</h3>
+          <h2 className="cover-title">{cover.header1}</h2>
+          <h3 className="cover-subtitle">{cover.subHeader}</h3>
         </div>
       </div>
       <div className="cover-gradient" />

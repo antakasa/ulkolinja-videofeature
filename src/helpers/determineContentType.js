@@ -29,6 +29,7 @@ const determineContentType = (index, e, desktop, swiper) => {
         desktop={desktop}
         header={header1}
         subHeader={subheader}
+        id={id}
       />
     );
   } else {

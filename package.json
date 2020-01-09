@@ -40,14 +40,21 @@
     "webvtt-parser": "git+https://github.com/annevk/webvtt.git"
   },
   "staticFiles": {
-    "staticPath": ["src/public"],
+    "staticPath": [
+      "src/public"
+    ],
     "watcherGlob": "**"
   },
   "postcss": {
     "modules": false,
     "plugins": {
       "autoprefixer": {
-        "browsers": [">1%", "last 4 versions", "Firefox ESR", "not ie < 9"],
+        "browsers": [
+          ">1%",
+          "last 4 versions",
+          "Firefox ESR",
+          "not ie < 9"
+        ],
         "flexbox": "no-2009"
       }
     }
