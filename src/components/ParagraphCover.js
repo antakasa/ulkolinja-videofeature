@@ -24,7 +24,6 @@ const ParagraphCover = ({index, id, desktop, header, subHeader}) => {
         }),
       })
       .then(() => {
-        return null;
         return cms.api.git.commit({
           files: [filepath],
           message: `Commit from Tina: Update ${filepath}`,
@@ -58,7 +57,7 @@ const ParagraphCover = ({index, id, desktop, header, subHeader}) => {
         />
         <div className="title-box">
           <h2 className="cover-title">{cover.header1}</h2>
-          <h3 className="cover-subtitle">{cover.subHeader}</h3>
+          <h3 className="cover-subtitle">{cover.subheader}</h3>
         </div>
       </div>
       <div className="cover-gradient" />
