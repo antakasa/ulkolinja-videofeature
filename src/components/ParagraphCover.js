@@ -3,10 +3,12 @@ import './paragraphCover.css';
 import Pagination from './pagination';
 import BrandLogo from '../images/ulkolinja_logo.png';
 import AreenaClip from './areenaClip';
-import {useCMS, useLocalForm, useWatchFormValues} from 'tinacms';
-const ParagraphCover = ({index, id, desktop, header, subHeader}) => {
+import {useCMS, useForm, useLocalForm, useWatchFormValues} from 'tinacms';
+
+const useContentSystem = ({initialValues, fields, filepath}) => {
   const cms = useCMS();
-  const filepath = `src/data/slides/coverPage.json`;
+
+  console.log(cms.forms.all());
 
   const getContents = () =>
     cms.api.git.show(filepath).then(e => {
@@ -32,20 +34,31 @@ const ParagraphCover = ({index, id, desktop, header, subHeader}) => {
 
   const [cover] = useLocalForm({
     id: filepath,
-    label: 'Muokkaa cover',
-    initialValues: {
-      header1: header,
-      subheader: subHeader,
-    },
-    fields: [
-      {name: 'header1', label: 'header', component: 'text'},
-      {name: 'subheader', label: 'sub header', component: 'text'},
-    ],
-
+    label: 'Muokkaa',
+    initialValues: initialValues,
+    fields: fields,
     onSubmit(data) {
       writeToDisk(data);
     },
   });
+
+  return cover;
+};
+
+const ParagraphCover = ({index, id, desktop, header, subHeader}) => {
+  const initialValues = {
+    header1: header,
+    subheader: subHeader,
+  };
+
+  const fields = [
+    {name: 'header1', label: 'header', component: 'text'},
+    {name: 'subheader', label: 'sub header', component: 'text'},
+  ];
+
+  const filepath = `src/data/slides/coverPage.json`;
+
+  const cover = useContentSystem({initialValues, fields, filepath});
 
   return (
     <>
