@@ -9,3 +9,4 @@ export {default as playAndPause} from './playAndPause.js';
 export {default as processData} from './processData.js';
 export {default as secondsToTime} from './secondsToTime.js';
 export {default as useWindowSize} from './useWindowSize.js';
+export { default as useContentSystem } from "./useContentSystem.js"

@@ -3,57 +3,32 @@ import './paragraphCover.css';
 import Pagination from './pagination';
 import BrandLogo from '../images/ulkolinja_logo.png';
 import AreenaClip from './areenaClip';
-import {useCMS, useForm, useLocalForm, useWatchFormValues} from 'tinacms';
+import {useContentSystem} from "../helpers";
 
-const useContentSystem = ({initialValues, fields, filepath}) => {
-  const cms = useCMS();
+const ParagraphCover = ({index, id, desktop, header, subHeader, guwa}) => {
 
-  console.log(cms.forms.all());
-
-  const getContents = () =>
-    cms.api.git.show(filepath).then(e => {
-      const data = JSON.parse(e.content);
-      return data;
-    });
-
-  const writeToDisk = async data =>
-    cms.api.git
-      .writeToDisk({
-        fileRelativePath: filepath,
-        content: JSON.stringify({
-          ...(await getContents()),
-          ...data,
-        }),
-      })
-      .then(() => {
-        return cms.api.git.commit({
-          files: [filepath],
-          message: `Commit from Tina: Update ${filepath}`,
-        });
-      });
-
-  const [cover] = useLocalForm({
-    id: filepath,
-    label: 'Muokkaa',
-    initialValues: initialValues,
-    fields: fields,
-    onSubmit(data) {
-      writeToDisk(data);
-    },
-  });
-
-  return cover;
-};
-
-const ParagraphCover = ({index, id, desktop, header, subHeader}) => {
   const initialValues = {
     header1: header,
     subheader: subHeader,
+    guwa: guwa
   };
 
   const fields = [
     {name: 'header1', label: 'header', component: 'text'},
     {name: 'subheader', label: 'sub header', component: 'text'},
+    {
+      name: "guwa",
+      label: "Taustaguwa",
+      component: "image",
+      parse: filename => `/content/images/${filename}`,
+
+      previewSrc: (formValues, { input }) => {
+        return formValues[input.name]
+      },
+
+      uploadDir: () => {
+        return "src/public/content/images/"
+      }}
   ];
 
   const filepath = `src/data/slides/coverPage.json`;

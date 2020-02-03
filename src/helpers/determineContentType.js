@@ -17,6 +17,7 @@ const determineContentType = (index, e, desktop, swiper) => {
     header1,
     subheader,
     id,
+    guwa
   } = e;
   if (type === 'graph') {
     return <GraphImage src={src} />;
@@ -30,6 +31,7 @@ const determineContentType = (index, e, desktop, swiper) => {
         header={header1}
         subHeader={subheader}
         id={id}
+        guwa={guwa}
       />
     );
   } else {
