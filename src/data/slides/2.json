@@ -1,7 +1,1 @@
-{
-  "type": "subtitled-video",
-  "id": "2. ",
-  "src": "/uploads/2.mp4",
-  "sub": "/uploads/2.vtt",
-  "tg": "/uploads/tg_venaja_anna.png"
-}
+{"type":"subtitled-video","id":"2. ","src":"/uploads/2.mp4","sub":"/uploads/2.vtt","tg":"/uploads/tg_venaja_anna.png","text":"Verkkotoimittaja: Viivi Berghem\n\nVerkon konseptisuunnittelija: Viivi Berghem\n\nVerkon ulkoasu: Annukka Palmén-Väisänen\n\nVerkon tekninen toteutus: Antti Saarenpää\n\nVastaava toimittaja: Ville Vilén\n\nYle Luovat sisällöt 2019","plainText":true,"guwa":"/content/images/9.jpg"}
