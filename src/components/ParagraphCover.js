@@ -9,26 +9,12 @@ const ParagraphCover = ({index, id, desktop, header, subHeader, guwa}) => {
 
   const initialValues = {
     header1: header,
-    subheader: subHeader,
-    guwa: guwa
+    subheader: subHeader
   };
 
   const fields = [
-    {name: 'header1', label: 'header', component: 'text'},
-    {name: 'subheader', label: 'sub header', component: 'text'},
-    {
-      name: "guwa",
-      label: "Taustaguwa",
-      component: "image",
-      parse: filename => `/content/images/${filename}`,
-
-      previewSrc: (formValues, { input }) => {
-        return formValues[input.name]
-      },
-
-      uploadDir: () => {
-        return "src/public/content/images/"
-      }}
+    {name: 'header1', label: 'header', component: 'textarea'},
+    {name: 'subheader', label: 'sub header', component: 'text'}
   ];
 
   const filepath = `src/data/slides/coverPage.json`;

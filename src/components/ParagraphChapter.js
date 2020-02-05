@@ -37,10 +37,9 @@ const ParagraphChapter = ({
       }}
   ];
 
-  const filepath = `src/data/slides/coverPage.json`;
+  const filepath = `src/data/slides/2.json`;
 
-  const cover = useContentSystem({initialValues, fields, filepath});
-  
+
   const position = () => {
     if (bottom && width <= 1025) return 'swiper-position-bottom';
     if (center || width >= 1025) return 'swiper-position-center';

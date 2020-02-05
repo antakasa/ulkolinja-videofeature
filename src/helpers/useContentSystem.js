@@ -29,7 +29,7 @@ const useContentSystem = ({initialValues, fields, filepath}) => {
   
     const [cover] = useLocalForm({
       id: filepath,
-      label: 'Muokkaa',
+      label: 'Edit cover page',
       initialValues: initialValues,
       fields: fields,
       onSubmit(data) {
