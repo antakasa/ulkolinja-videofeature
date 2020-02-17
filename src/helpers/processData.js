@@ -11,7 +11,6 @@ const processData = () => {
       slides,
       e => e.id.toUpperCase() === id.toUpperCase(),
     );
-    console.log(pickedFromSlides);
     const objectData = pickedFromSlides[Object.keys(pickedFromSlides)[0]];
     data.push(objectData);
   });

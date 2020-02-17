@@ -2,7 +2,7 @@ import React from 'react';
 import './paragraphChapter.css';
 import Pagination from './pagination';
 import ReactMarkdown from 'react-markdown';
-import {useWindowSize} from '../helpers';
+import {useWindowSize} from '../helpers/index.js';
 import header from '../images/ulkolinja_logo_pieni.png';
 const ParagraphChapter = ({
   credits,
