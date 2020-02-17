@@ -2,7 +2,6 @@ import {videos} from '../data';
 import './pagination.css';
 import React from 'react';
 import {data} from '../data';
-
 export const ProgressBar = ({percentage}) => {
   return (
     <div className="progress-bar">
