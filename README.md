@@ -45,4 +45,4 @@ When all the content editing has been done, and you want to publish site to Ylei
 1. go to repo and run ```git pull```
 2. run ```npm run deploy```
 3. Site should be available at lusi-dataviz.ylestatic.fi/[package-name]/index.html.
-4. When embedding content into Fynd, in article settings select "External layout" and "Export as external content". The feature should work in Yle app too. 
+4. When embedding content into Fynd, in article settings select "External layout" and "Export as external content". The article should work in Yle app too. 
