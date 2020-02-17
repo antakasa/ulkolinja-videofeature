@@ -1,4 +1,4 @@
-import processData from './helpers/processData.js';
+import {processData} from './helpers';
 const dataNotReplaced = processData();
 
 /**
