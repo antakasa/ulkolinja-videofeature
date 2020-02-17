@@ -37,7 +37,7 @@ const func = filenames => {
 
 func(subs)
   .then(res => {
-    console.log('all read', res.length);
+    console.log('files read', res.length);
     let data = res.map((e, i) => {
       return {[subs[i]]: res[i]};
     });
