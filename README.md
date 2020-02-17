@@ -1,134 +1,48 @@
-# Dataviz starter kit 
+This repository has files and instructions on how to create new Ulkolinja video feature project – including setting up the content system where content creators can edit the site without touching the source files. Assuming you have some understanding on basic Git operations and Fynd, the whole process shouldn't take more than an hour.  
 
-Note: Under development - not properly tested as of 28.3.2019.
+Prerequisities
 
-Powered by [Parcel](https://parceljs.org).
+* Github account
+* Node (v.8 or above)
+ 
+## Steps to create new project and push it to Github 
 
-*  Automates the boring stuff: Fynd hooks etc. 
-*  Deploy your project to lusi-dataviz S3 bucket with one command. 
-* `CSS-prefixer` - CSS classes get ```#dataviz-app``` prefix 
-* `autoprefixer` - vendor prefixes added according to predefined settings
-* `babel-preset-env` & `babel-polyfill` & `babel-preset-react` – use modern Javascript features. Code gets transpiled into es5.
-* `react` && `react-dom`  **You can also drop React from your project easily if you don't need it**
+1. Clone this repository  ```git clone git@github.com:antakasa/ulkolinja-videofeature.git```
+2. Go to the folder ``` cd ulkolinja-videofeature```
+3.  delete .git folder ``` rm -rf .gif```
+4.  modify package.json.  Change *name* to something project specific, for example "2020-01-ulkolinja-kambodza"
+5. modify src/helpers/AnalyticsMethods.js. Change *pageName* to something project specific (this is the keyword you need to find analytics data from Adobe). 
+6. Initialize a new git project ```git init```
+7. Make all files to be tracked by Git ```git add . ```
+8. Create an initial commit ``` git commit -a -m "initial commit"```
+9. Create new Github repository. This is mandatory. Go to https://github.com/new. Doesn't have to be public repo, private is fine. When created, copy the repo's ssh address to clipboard (you need it in the next step). 
+10. Add the remote repo you created into your project ```git remote add origin git@github.com:yourusername/yourrepo.git``` 
+11. Push the content into your repo ```git push -u origin master ```
 
-## Prerequisities
+### Create the content system - Netlify part
 
-* Node v. 8 or above 
-* In order to push your app to S3, AWS Cli and Yle AWS credentials with ```lusi-aws-yle``` account are required. Create credentials by following [Yle's instructions](https://github.com/Yleisradio/wiki/wiki/01-Credentials). AWS Cli installation is also detailed in [Yleisradio wiki](https://github.com/Yleisradio/wiki/wiki/05-Tools#aws-cli).
+We use Netlify as a place where the content system lives. Follow these steps:
 
-## Getting started
+1. Log-in / register with your **Github account** in app.netlify.com. 
+2. Create new "continous deployment" project (from Github) https://app.netlify.com/start
+3. Choose the repo you created in the previous steps.
+4. When the next view opens, scroll down to "build command". Insert ```npm run build:test``` here Also, insert ```build``` to "publish directory" field.  
+5. press deploy site. 
+6. go to "site settings".
+7. Change general --> site details --> Site name to something project specific.
+6. In site settings go to  --> Identity. Click "Enable identity".
+7. In the site settings, go to Identity --> Services. Click "Enable Git Gateway".
+8. Go back to your Netlify homesite by clicking the brand logo on the upper left corner. Select your project in the list.  On the top menu there are links such as "Overview, deploys, functions..." Click "Identity". 
+9. Click "invite users" and write e-mail addresses of users you like to be able to log-in to content system. ** Netlify sends an confirmation link via e-mail. Make sure the users have clicked this link.**
+10. Assuming the deployment has finished without errors, The CMS should be availalbe at [your-site-name].netlify.com/admin.
 
-```
-git clone git@github.com:Yleisradio/lusi-dataviz-starter-kit.git [your-project-name]
-cd [your-project-name]
-rm -rf .git
-git init
-npm install
-```
+In case of error, see the deploy information in Netlify panel. Has the deploy failed? In that case, have a look at the log. If there is something wrong with the code, make changes in the code editor in your computer and run ```git commit -m "fix"``` ```git push -u origin master```. Netlify starts the deploy process automatically whenever something new has been committed into the repository. 
 
-After install, open ```package.json``` and change the ```name``` property. This is important because it gives an unique identifier to your project which is used to create S3 directory etc.
+## Publishing to Yle
 
-Then start your dev environment by:
+When all the content editing has been done, and you want to publish site to Yleisradio AWS S3 (assuming you have the correct access rights and tools):
 
-```npm start```
-
-Open `http://localhost:1234` in your browser and edit `src/app.js` and press save. ```Index.js``` contains Fynd specific stuff. You never need to edit it unless you want to. 
-
-## Remove React
-It's completely ok to use this repo to non-React projects too. Just remove everything on ```src/app.js```. 
-
-Optionally, if you don't want React libs to bloat you dev environment, you can also run ```npm uninstall react react-dom @babel/preset-react``` and remove ```@babel/preset-react``` from .babelrc.
-
-## Styling
-
-Per default, all classes in css-files are prefixed.
-
-```css
-.hello {
-    font-size: 3em;
-}
-
-```
-
-becomes to 
-
-```css
-#dataviz-app .hello {
-    font-size: 3em;
-}
-```
-
-Vendor prefixes are added by Autoprefixer.
-
-```css
-::placeholder {
-  color: gray;
-}
-```
-
-becomes
-
-
-```css
-::-webkit-input-placeholder {
-  color: gray;
-}
-:-ms-input-placeholder {
-  color: gray;
-}
-::-ms-input-placeholder {
-  color: gray;
-}
-::placeholder {
-  color: gray;
-}
-```
-
-Want to try [CSS modules]("https://css-tricks.com/css-modules-part-1-need/")? Turn ```postcss.modules``` to ```true``` in package.json.
-
-## Build & Deploy
-
-``` 
-npm run build
-```
-
-* Creates static html site to ```build``` folder.
-
-```
-npm run deploy
-```
-
-* Creates static html site to ```build``` folder 
-* Creates ```conf.json``` and ```dataviz.html``` and puts them to ```build```
-* Syncs build folder to ```https://lusi-dataviz.ylestatic.fi/$npm_package_name/``` where $npm_package_name is the name of the project. You can paste this URL to yle visualisation node.  
-
-## Yle Player
-
-Fynd and Synd have Yle Player v2 under the hood, and you can use the dynamic embed (see more [here](https://github.com/Yleisradio/player-static/wiki/Player-embed-instructions))  with the ```embedYlePlayer``` helper function:
-
-```js
-yleVisualisation.embedYlePlayer(root, "1-12345678", { playFullScreen: true });
-```
-
-The ```root``` should be an empty div or similar and ```id``` has to be a string in form ```"1-12345678"```. Both are required. 
-
-**options** is a non-required object where following properties could be declared: 
-
-* **verticalVideo** boolean,
-* **autoplay** boolean
-* **seek** number in seconds
-* **playFullScreen** boolean
-* **onPlayerReady** function
-
-For more information about the player, please have a look at [Yle Player Docs](https://github.com/Yleisradio/player-static/wiki/Player-embed-instructions)
-
-
-## Yle Analytics
-
-Yle Analytics SDK is available via global object ```window.yleAnalytics```. To read more about yleAnalytics SDK in Finnish, see [documentation](http://chili.yle.fi/confluence/display/YLEWEB/Yle+Analytics+SDK).
-
-Moreover, `yleVisualisation.trackEvent()` works the same way as [yleAnalytics.trackEvent](http://chili.yle.fi/confluence/display/YLEWEB/Yle+Analytics+SDK#YleAnalyticsSDK-yleAnalytics.trackEvent(eventName[,settings])).
-
-```js
-yleVisualisation.trackEvent('my-event-name-prefix.my-vis-was-loaded');
-```
+1. go to repo and run ```git pull```
+2. run ```npm run deploy```
+3. Site should be available at lusi-dataviz.ylestatic.fi/[package-name]/index.html.
+4. When embedding content into Fynd, in article settings select "External layout" and "Export as external content". The feature should work in Yle app too. 
