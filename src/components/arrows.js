@@ -1,8 +1,8 @@
 import React from 'react';
 import './arrows.css';
-import nuoli from '../images/nuoli.png';
-import petrooliNuoli from '../images/nuoli_petrooli.png';
-import palloNuoli from '../images/nuoli_pallero.png';
+import nuoli from '../images/nuoli.svg';
+import petrooliNuoli from '../images/nuoli_sininen.svg';
+import palloNuoli from '../images/nuoli_pallero.svg';
 import {data} from '../data';
 const Arrows = ({type, desktop, index}) => {
   if (type === 'cover' && !desktop) {
