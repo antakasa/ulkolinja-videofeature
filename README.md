@@ -1,4 +1,4 @@
-This repository has files and instructions on how to create new Ulkolinja video feature project – including setting up the content system where content creators can edit the site without touching the source files. Assuming you have some understanding on basic Git operations and Fynd, the whole process shouldn't take more than an hour.  
+This repository has files and instructions on how to create a new Ulkolinja video feature project. These include setting up the content system where content creators can edit the site without touching the source files. Assuming you have some understanding on basic Git operations and Fynd, the whole process shouldn't take more than an hour or two.  
 
 Prerequisities
 
