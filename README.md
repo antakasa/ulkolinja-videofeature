@@ -5,7 +5,7 @@ Prerequisities
 * Github account
 * Node (v.8 or above)
  
-## Steps to create new project and push it to Github 
+## Steps to create a new project and push it to Github 
 
 1. Clone this repository  ```git clone git@github.com:antakasa/ulkolinja-videofeature.git```
 2. Go to the folder ``` cd ulkolinja-videofeature```
@@ -15,7 +15,7 @@ Prerequisities
 6. Initialize a new git project ```git init```
 7. Make all files to be tracked by Git ```git add . ```
 8. Create an initial commit ``` git commit -a -m "initial commit"```
-9. Create new Github repository. This is mandatory. Go to https://github.com/new. Doesn't have to be public repo, private is fine. When created, copy the repo's ssh address to clipboard (you need it in the next step). 
+9. Create a new Github repository. This is mandatory. Go to https://github.com/new. Doesn't have to be public repo, private is fine. When created, copy the repo's ssh address to clipboard (you need it in the next step). 
 10. Add the remote repo you created into your project ```git remote add origin git@github.com:yourusername/yourrepo.git``` 
 11. Push the content into your repo ```git push -u origin master ```
 
@@ -24,7 +24,7 @@ Prerequisities
 We use Netlify as a place where the content system lives. Follow these steps:
 
 1. Log-in / register with your **Github account** in app.netlify.com. 
-2. Create new "continous deployment" project (from Github) https://app.netlify.com/start
+2. Create a new "continous deployment" project (from Github) https://app.netlify.com/start
 3. Choose the repo you created in the previous steps.
 4. When the next view opens, scroll down to "build command". Insert ```npm run build:test``` here Also, insert ```build``` to "publish directory" field.  
 5. press deploy site. 
