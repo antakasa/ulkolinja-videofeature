@@ -44,6 +44,6 @@ In case of error, see the deploy information in Netlify panel. Has the deploy fa
 When all the content editing has been done, and you want to publish site to Yleisradio AWS S3 (assuming you have the correct access rights and tools):
 
 1. go to repo and run ```git pull```
-2. run ```npm run deploy```
+2. run ```npm run deploy:fynd```
 3. Site should be available at lusi-dataviz.ylestatic.fi/[package-name]/index.html.
 4. When embedding content into Fynd, in article settings select "External layout" and "Export as external content". The article should work in Yle app too. 
