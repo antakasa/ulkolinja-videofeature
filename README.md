@@ -10,14 +10,15 @@ Prerequisities
 1. Clone this repository  ```git clone git@github.com:antakasa/ulkolinja-videofeature.git```
 2. Go to the folder ``` cd ulkolinja-videofeature```
 3.  delete .git folder ``` rm -rf .gif```
-4.  modify package.json.  Change *name* to something project specific, for example "2020-01-ulkolinja-kambodza"
-5. modify src/helpers/AnalyticsMethods.js. Change *pageName* to something project specific (this is the keyword you need to find analytics data from Adobe). 
-6. Initialize a new git project ```git init```
-7. Make all files to be tracked by Git ```git add . ```
-8. Create an initial commit ``` git commit -a -m "initial commit"```
-9. Create a new Github repository. This is mandatory. Go to https://github.com/new. Doesn't have to be public repo, private is fine. When created, copy the repo's ssh address to clipboard (you need it in the next step). 
-10. Add the remote repo you created into your project ```git remote add origin git@github.com:yourusername/yourrepo.git``` 
-11. Push the content into your repo ```git push -u origin master ```
+4.  modify package.json.  Change *name* to something project specific, for example "2020-01-ulkolinja-kambodza".
+5.  in src/data.js modify the line 61 where is the url to CMS uploaded assets in lusi-dataviz. NB! Keep "uploads" at the end of path. ```https://lusi-dataviz.ylestatic.fi/2020-01-ulkolinja-kambodza/uploads```,
+6. modify src/helpers/AnalyticsMethods.js. Change *pageName* to something project specific (this is the keyword you need to find analytics data from Adobe). 
+7. Initialize a new git project ```git init```
+8. Make all files to be tracked by Git ```git add . ```
+9. Create an initial commit ``` git commit -a -m "initial commit"```
+10. Create a new Github repository. This is mandatory. Go to https://github.com/new. Doesn't have to be public repo, private is fine. When created, copy the repo's ssh address to clipboard (you need it in the next step). 
+11. Add the remote repo you created into your project ```git remote add origin git@github.com:yourusername/yourrepo.git``` 
+12. Push the content into your repo ```git push -u origin master ```
 
 ### Create the content system - Netlify part
 
