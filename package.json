@@ -18,7 +18,7 @@
     "autoprefixer": "^7.2.1",
     "data": "^0.6.1",
     "framer-motion": "^1.6.7",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lodash.compact": "^3.0.1",
     "lodash.pickby": "^4.6.0",
     "moment": "^2.24.0",
